@@ -1,18 +1,26 @@
 import express from 'express';
 import { OpenAI } from 'openai';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3001;
+app.use(cors());
+
+/* 
+use this when deployed:  
+app.use(cors({
+  origin: 'http://your-react-app-origin.com'
+})); 
+*/
 
 app.use(express.json());
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 app.post('/chat', async (req, res) => {
-  dotenv.config();
 
   try {
     const messages = req.body.messages;
