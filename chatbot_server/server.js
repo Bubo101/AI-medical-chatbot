@@ -19,15 +19,17 @@ app.use(cors({
 app.use(express.json());
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const botContext = {role: "system", content: "Your name is Uro. You are a helpful urology specialist giving advice only about urology and urology surgery for patients."}
 
 app.post('/chat', async (req, res) => {
 
   try {
-    const messages = req.body.messages;
+    const userMessages = req.body.messages;
+    const messagesToSend = [botContext, ...userMessages];
 
     const completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: messages,
+      model: "gpt-3.5-turbo-0125",
+      messages: messagesToSend,
     });
 
     res.json({ response: completion.choices[0].message.content.trim() });
