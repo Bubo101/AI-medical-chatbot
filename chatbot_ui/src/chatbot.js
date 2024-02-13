@@ -34,28 +34,35 @@ function Chatbot() {
     const sendMessage = async (e) => {
         e.preventDefault();
         setIsLoading(true);
-
-        // Add a loading message to display loading dots
+    
+        // Add the user's message immediately to the chat
+        const newUserMessage = { role: 'user', content: userInput };
+        setMessages(currentMessages => [...currentMessages, newUserMessage]);
+    
+        // Then add a loading message to display loading dots
         const loadingMessage = { role: 'loading', content: '...' };
         setMessages(currentMessages => [...currentMessages, loadingMessage]);
-
+    
         try {
             const response = await axios.post('http://localhost:3001/chat', {
-                messages: messages.concat({ role: 'user', content: userInput }).map(msg => ({ role: msg.role, content: msg.content })),
+                messages: [...messages, newUserMessage].map(msg => ({ role: msg.role, content: msg.content })),
             });
-            // Successfully received a response, remove the loading message, then add user message and GPT response
-            setMessages(currentMessages =>
-                currentMessages.slice(0, -1).concat({ role: 'user', content: userInput }, { role: 'system', content: response.data.response })
+            // Successfully received a response, update chat with GPT response
+            // Here, we need to remove the loading message and keep the user message
+            setMessages(currentMessages => 
+                currentMessages.slice(0, -1) // Remove only the loading message
+                .concat({ role: 'system', content: response.data.response })
             );
         } catch (error) {
             console.error("Error sending message:", error);
-            // Remove the loading message in case of an error
+            // Remove the loading message in case of an error, but keep the user's message
             setMessages(currentMessages => currentMessages.slice(0, -1));
         } finally {
             setIsLoading(false);
             setUserInput(''); // Clear the input field after sending
         }
     };
+    
 
     return (
         <div className="chat-container">
