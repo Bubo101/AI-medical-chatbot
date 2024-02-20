@@ -1,9 +1,23 @@
-const { Pool } = require('pg');
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL, // Use environment variables for your database connection string
-  ssl: {
-    rejectUnauthorized: false // change to true when in production
-  }
-});
+import sqlite3 from 'sqlite3';
+import { open } from 'sqlite'; // Use sqlite wrapper to work with async/await
 
-module.exports = { query: (text, params) => pool.query(text, params) };
+sqlite3.verbose();
+
+const dbPath = 'path/to/your/database.db'; // Update the path as needed
+
+export async function openDb() {
+  return open({
+    filename: dbPath,
+    driver: sqlite3.Database
+  });
+}
+
+export async function setupDb() {
+  const db = await openDb();
+  await db.exec(`CREATE TABLE IF NOT EXISTS feedback (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    helpful BOOLEAN NOT NULL,
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+  )`);
+  console.log('Feedback table is created or already exists.');
+}
