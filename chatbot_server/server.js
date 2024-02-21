@@ -2,7 +2,7 @@ import express from 'express';
 import { OpenAI } from 'openai';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import { setupDb, insertFeedback, openDb } from './db.js'; // Import setupDb from db.js
+import { setupDb, insertFeedback, openDb, insertSession, setupSessionDb } from './db.js'; // Import setupDb from db.js
 
 dotenv.config();
 
@@ -27,6 +27,19 @@ setupDb().then(() => {
   console.log('Database setup completed.');
 }).catch((error) => {
   console.error('Error setting up the database:', error);
+});
+
+setupSessionDb().catch(console.error);
+
+app.post('/start-session', async (req, res) => {
+  console.log('Recieved start session request')
+  try {
+    await insertSession();
+    res.send({ message: 'Session started' });
+  } catch (error) {
+    console.error("Error starting a new session:", error);
+    res.status(500).json({ error: "Error processing your request" });
+  }
 });
 
 // Your existing chat endpoint

@@ -35,3 +35,29 @@ export async function insertFeedback(helpful) {
   }
 }
 
+export async function setupSessionDb() {
+  const db = await openDb();
+  await db.exec(`CREATE TABLE IF NOT EXISTS sessions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+    feedback_given BOOLEAN DEFAULT 0
+  )`);
+  console.log('Sessions table is created or already exists.');
+}
+
+// Function to insert a new session record
+export async function insertSession() {
+  const db = await openDb();
+  await db.run(`INSERT INTO sessions (feedback_given) VALUES (0)`);
+  
+  const { total } = await db.get(`SELECT COUNT(*) as total FROM sessions`);
+  
+  console.log(`Total sessions: ${total}`);
+}
+
+// Function to update a session with feedback given
+export async function updateSessionFeedback(sessionId) {
+  const db = await openDb();
+  await db.run(`UPDATE sessions SET feedback_given = 1 WHERE id = ?`, [sessionId]);
+  console.log('Session feedback updated.');
+}

@@ -16,6 +16,19 @@ function Chatbot() {
     const inputRef = useRef(null); // Ref for the input field
 
     useEffect(() => {
+        const startSession = async () => {
+          try {
+            await fetch('http://localhost:3001/start-session', { method: 'POST' });
+            console.log('Chatbot session started.');
+          } catch (error) {
+            console.error('Error starting session:', error);
+          }
+        };
+      
+        startSession();
+      }, []);
+
+    useEffect(() => {
         if (messagesContainerRef.current) {
             const { scrollHeight, clientHeight } = messagesContainerRef.current;
             messagesContainerRef.current.scrollTop = scrollHeight - clientHeight;
