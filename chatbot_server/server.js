@@ -90,6 +90,30 @@ app.get('/feedback-percentage', async (req, res) => {
   }
 });
 
+app.get('/user-metrics', async (req, res) => {
+  try {
+    const db = await openDb();
+    const { total: totalSessions } = await db.get("SELECT COUNT(*) as total FROM sessions");
+
+    const { total: totalFeedbacks } = await db.get("SELECT COUNT(*) as total FROM feedback");
+
+    const { total: positiveFeedbacks } = await db.get("SELECT COUNT(*) as total FROM feedback WHERE helpful = 1");
+
+    const percentHelpful = totalFeedbacks > 0 ? Math.round((positiveFeedbacks / totalFeedbacks) * 100) : 0;
+
+    const percentSessionsWithFeedback = totalSessions > 0 ? Math.round((totalFeedbacks / totalSessions) * 100) : 0;
+
+    res.json({
+      totalSessions,
+      totalFeedbacks,
+      percentHelpful,
+      percentSessionsWithFeedback,
+    });
+  } catch (error) {
+    console.error("Error fetching session and feedback data:", error);
+    res.status(500).json({ error: "Error processing your request" });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
