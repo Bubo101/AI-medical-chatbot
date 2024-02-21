@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import FormatMessage from './formatmsg';
 import DisclaimerPopup from './disclaimerPopup';
+import Feedback from './feedback';
 import './style.css';
 
 function Chatbot() {
@@ -96,6 +97,7 @@ function Chatbot() {
                         />
                         <button type="submit" disabled={isLoading}>Send</button>
                     </form>
+                    <Feedback />
                 </>
             )}
         </div>

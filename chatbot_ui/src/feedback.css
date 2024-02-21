@@ -1,0 +1,25 @@
+.feedback-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .feedback-container p {
+    margin: 10px 0;
+  }
+  
+  .thumbs-up, .thumbs-down {
+    font-size: 24px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    margin: 0 10px;
+  }
+  
+  .thumbs-up:hover, .thumbs-up:focus {
+    color: green;
+  }
+  
+  .thumbs-down:hover, .thumbs-down:focus {
+    color: red;
+  }
+  

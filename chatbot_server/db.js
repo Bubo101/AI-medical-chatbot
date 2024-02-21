@@ -3,7 +3,7 @@ import { open } from 'sqlite'; // Use sqlite wrapper to work with async/await
 
 sqlite3.verbose();
 
-const dbPath = 'path/to/your/database.db'; // Update the path as needed
+const dbPath = './database.db'; // Update the path as needed
 
 export async function openDb() {
   return open({
@@ -21,3 +21,17 @@ export async function setupDb() {
   )`);
   console.log('Feedback table is created or already exists.');
 }
+
+export async function insertFeedback(helpful) {
+  const db = await openDb();
+  const sql = `INSERT INTO feedback (helpful) VALUES (?)`;
+  try {
+    const result = await db.run(sql, [helpful]);
+    console.log(`Feedback inserted with ID: ${result.lastID}`);
+    return result.lastID; // Optionally return the ID of the inserted feedback
+  } catch (error) {
+    console.error('Error inserting feedback:', error.message);
+    throw error; // Re-throw the error to handle it in the calling context
+  }
+}
+
