@@ -1,25 +1,50 @@
 .feedback-container {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  .feedback-container p {
-    margin: 10px 0;
-  }
-  
-  .thumbs-up, .thumbs-down {
-    font-size: 24px;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    margin: 0 10px;
-  }
-  
-  .thumbs-up:hover, .thumbs-up:focus {
-    color: green;
-  }
-  
-  .thumbs-down:hover, .thumbs-down:focus {
-    color: red;
-  }
-  
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.feedback-container p {
+  margin: 10px 0;
+}
+
+.feedback-thankyou {
+  /* Inherits height from .feedback-container */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 18px;
+  padding: 20px; /* Add padding to ensure text fits well */
+}
+
+.thumbs-up, .thumbs-down {
+  font-size: 24px;
+  border: 2px solid transparent; /* Default transparent border */
+  border-radius: 50%; /* Circular buttons */
+  background-color: transparent;
+  cursor: pointer;
+  padding: 10px; /* Add padding for a larger clickable area */
+  margin: 0 10px;
+  transition: color 0.3s, border-color 0.3s; /* Smooth transition for hover effects */
+}
+
+.thumbs-up {
+  color: green; /* Green color for thumbs up */
+}
+
+.thumbs-down {
+  color: red; /* Red color for thumbs down */
+}
+
+.thumbs-up:hover, .thumbs-up:focus {
+  color: darkgreen; /* Darker green on hover/focus */
+  border-color: green; /* Green border on hover/focus */
+}
+
+.thumbs-down:hover, .thumbs-down:focus {
+  color: darkred; /* Darker red on hover/focus */
+  border-color: red; /* Red border on hover/focus */
+}

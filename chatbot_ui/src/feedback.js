@@ -1,6 +1,7 @@
-// Feedback.js
 import React, { useState } from 'react';
-import './feedback.css'; // Make sure the path matches where you place the CSS file
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp as farThumbsUp, faThumbsDown as farThumbsDown } from '@fortawesome/free-regular-svg-icons';
+import './feedback.css'; 
 
 function Feedback() {
   const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
@@ -25,10 +26,24 @@ function Feedback() {
     }
   };
 
+  let color;
+  if (helpfulPercentage < 50) {
+    color = 'red';
+  } else if (helpfulPercentage >= 50 && helpfulPercentage < 75) {
+    color = 'orange';
+  } else {
+    color = 'green';
+  }
+
   if (feedbackSubmitted) {
     return (
       <div className="feedback-thankyou">
-        Thank you for submitting feedback, {helpfulPercentage}% of users have found this tool helpful!
+        <div>
+            Thank you for submitting feedback!
+        </div>
+        <div>
+          <span style={{ color }}>{helpfulPercentage}</span>%&nbsp;of users have found this tool helpful!
+        </div>
       </div>
     );
   }
@@ -36,8 +51,12 @@ function Feedback() {
   return (
     <div className="feedback-container">
       <p>Was this helpful?</p>
-      <button className="thumbs-up" onClick={() => submitFeedback(true)}>👍</button>
-      <button className="thumbs-down" onClick={() => submitFeedback(false)}>👎</button>
+      <button className="thumbs-up" onClick={() => submitFeedback(true)}>
+        <FontAwesomeIcon icon={farThumbsUp} />
+      </button>
+      <button className="thumbs-down" onClick={() => submitFeedback(false)}>
+        <FontAwesomeIcon icon={farThumbsDown} />
+      </button>
     </div>
   );
 }

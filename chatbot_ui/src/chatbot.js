@@ -13,7 +13,7 @@ function Chatbot() {
     const [isLoading, setIsLoading] = useState(false);
     const [acceptedDisclaimer, setAcceptedDisclaimer] = useState(false);
     const messagesContainerRef = useRef(null);
-    const inputRef = useRef(null); // Ref for the input field
+    const inputRef = useRef(null); 
 
     useEffect(() => {
         const startSession = async () => {
@@ -40,6 +40,13 @@ function Chatbot() {
             inputRef.current && inputRef.current.focus();
         }
     }, [isLoading, messages.length]);
+
+    useEffect(() => {
+        // Only attempt to set focus if the disclaimer has been accepted
+        if (acceptedDisclaimer && inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, [acceptedDisclaimer]);
 
     const handleAcceptDisclaimer = () => {
         setAcceptedDisclaimer(true);
