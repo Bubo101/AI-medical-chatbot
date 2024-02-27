@@ -11,59 +11,15 @@
     align-items: center;
     z-index: 1000; 
   }
-  
-  /* .disclaimer-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 600px;
-    text-align: center;
-  } */
 
   .disclaimer-content {
-    background-image: linear-gradient(to right, #56CCF2, #2F80ED);
+    background-image: linear-gradient(to right, #42A6EF, #2F80ED);
     color: white; 
     padding: 20px;
     border-radius: 10px;
     max-width: 600px;
     text-align: center;
   }
-
-  /* .disclaimer-content {
-    background-image: linear-gradient(to right, #9D50BB, #6E48AA);
-    color: white; 
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 600px;
-    text-align: center;
-  } */
-
-  /* .disclaimer-content {
-    background-image: linear-gradient(to right, #FF6E7F, #Bfe9FF);
-    color: #403B4A; 
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 600px;
-    text-align: center;
-  } */
-
-  /* .disclaimer-content {
-    background-image: linear-gradient(to right, #A1C4FD, #C2E9FB);
-    color: #003333; 
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 600px;
-    text-align: center;
-  } */
-
-  /* .disclaimer-content {
-    background-image: linear-gradient(to right, #434343, #000000);
-    color: #CCCCCC;
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 600px;
-    text-align: center;
-  } */
   
   .disclaimer-content h2 {
     margin-top: 0;

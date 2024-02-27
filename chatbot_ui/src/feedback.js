@@ -26,24 +26,17 @@ function Feedback() {
     }
   };
 
-  let color;
-  if (helpfulPercentage < 50) {
-    color = 'red';
-  } else if (helpfulPercentage >= 50 && helpfulPercentage < 75) {
-    color = 'orange';
-  } else {
-    color = 'green';
-  }
+  let color = 'green'
 
   if (feedbackSubmitted) {
     return (
       <div className="feedback-thankyou">
-        <div>
-            Thank you for submitting feedback!
-        </div>
-        <div>
-          <span style={{ color }}>{helpfulPercentage}</span>%&nbsp;of users have found this tool helpful!
-        </div>
+        Thank you for submitting feedback!
+        {helpfulPercentage >= 80 && (
+          <div>
+            <span style={{ color }}>{` ${helpfulPercentage}%`}</span> of users have found this tool helpful!
+          </div>
+        )}
       </div>
     );
   }
