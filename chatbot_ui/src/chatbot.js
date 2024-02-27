@@ -14,19 +14,20 @@ function Chatbot() {
     const [acceptedDisclaimer, setAcceptedDisclaimer] = useState(false);
     const messagesContainerRef = useRef(null);
     const inputRef = useRef(null); 
+    const apiUrl = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         const startSession = async () => {
-          try {
-            await fetch('http://localhost:3001/start-session', { method: 'POST' });
+        try {
+            await fetch(`${apiUrl}/start-session`, { method: 'POST' });
             console.log('Chatbot session started.');
-          } catch (error) {
+        } catch (error) {
             console.error('Error starting session:', error);
-          }
+        }
         };
-      
+    
         startSession();
-      }, []);
+    }, [apiUrl]);
 
     useEffect(() => {
         if (messagesContainerRef.current) {
@@ -42,7 +43,6 @@ function Chatbot() {
     }, [isLoading, messages.length]);
 
     useEffect(() => {
-        // Only attempt to set focus if the disclaimer has been accepted
         if (acceptedDisclaimer && inputRef.current) {
             inputRef.current.focus();
         }
@@ -56,31 +56,28 @@ function Chatbot() {
         e.preventDefault();
         setIsLoading(true);
     
-        // Add the user's message immediately to the chat
         const newUserMessage = { role: 'user', content: userInput };
         setMessages(currentMessages => [...currentMessages, newUserMessage]);
-    
-        // Then add a loading message to display loading dots
+
         const loadingMessage = { role: 'loading', content: '...' };
         setMessages(currentMessages => [...currentMessages, loadingMessage]);
     
         try {
-            const response = await axios.post('http://localhost:3001/chat', {
+            const response = await axios.post(`${apiUrl}/chat`, {
                 messages: [...messages, newUserMessage].map(msg => ({ role: msg.role, content: msg.content })),
             });
-            // Successfully received a response, update chat with GPT response
-            // Here, we need to remove the loading message and keep the user message
+
             setMessages(currentMessages => 
-                currentMessages.slice(0, -1) // Remove only the loading message
+                currentMessages.slice(0, -1) 
                 .concat({ role: 'system', content: response.data.response })
             );
         } catch (error) {
             console.error("Error sending message:", error);
-            // Remove the loading message in case of an error, but keep the user's message
+
             setMessages(currentMessages => currentMessages.slice(0, -1));
         } finally {
             setIsLoading(false);
-            setUserInput(''); // Clear the input field after sending
+            setUserInput(''); 
         }
     };
     

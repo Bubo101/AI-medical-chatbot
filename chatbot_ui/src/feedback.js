@@ -8,16 +8,16 @@ function Feedback() {
   const [helpfulPercentage, setHelpfulPercentage] = useState(null);
 
   const submitFeedback = async (helpful) => {
+    const apiUrl = process.env.REACT_APP_API_URL;
     try {
-      await fetch('http://localhost:3001/submit-feedback', {
+      await fetch(`${apiUrl}/submit-feedback`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ helpful }),
       });
-      // Fetch the updated percentage of positive feedback
-      const response = await fetch('http://localhost:3001/feedback-percentage');
+      const response = await fetch(`${apiUrl}/feedback-percentage`);
       const data = await response.json();
       setHelpfulPercentage(data.percentage);
       setFeedbackSubmitted(true);

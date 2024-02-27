@@ -2,20 +2,17 @@ import express from 'express';
 import { OpenAI } from 'openai';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import { setupDb, insertFeedback, openDb, insertSession, setupSessionDb } from './db.js'; // Import setupDb from db.js
+import { setupDb, insertFeedback, openDb, insertSession, setupSessionDb } from './db.js';
 
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3001;
-app.use(cors());
 
-/* 
-use this when deployed:  
 app.use(cors({
-  origin: 'http://your-react-app-origin.com'
+  origin: process.env.CORS_ORIGIN
 })); 
-*/
+
 
 app.use(express.json());
 
@@ -86,11 +83,9 @@ app.post('/chat', async (req, res) => {
   }
 });
 
-// Feedback submission endpoint
 app.post('/submit-feedback', async (req, res) => {
-  const { helpful } = req.body; // Assuming helpful is a boolean value
+  const { helpful } = req.body; 
   try {
-    // Import the function to insert feedback from db.js (assuming it's exported from there)
     await insertFeedback(helpful);
     res.send('Feedback submitted successfully');
   } catch (error) {
