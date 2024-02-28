@@ -18,7 +18,7 @@ const DisclaimerPopup = ({ onAccept }) => {
           <h4>Try asking me things like:</h4>
           <p>"What is a cystoscopy?"</p>
           <p>"What is the recovery time for a vasectomy?"</p>
-          <p>"What is the address and phone number for the practice?"</p>
+          <p>"What is the address and phone number for the clinic?"</p>
         </div>
         <button onClick={onAccept}>I Accept</button>
       </div>
