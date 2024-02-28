@@ -38,4 +38,4 @@ jobs:
           npm install
           
           # Use PM2 to restart the app, or start it if it's not already running
-          pm2 restart chatbot_server || pm2 start server.js --name "chatbot_server"
+          pm2 restart chatbot_server || pm2 start server.js --name "chatbot_server" --cwd ~/AI-medical-chatbot/chatbot_server
