@@ -1,41 +1,24 @@
-name: Deploy Node.js Application to EC2
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4.1.1
-
-    - name: Deploy to EC2
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ${{ secrets.EC2_USER }}
-        key: ${{ secrets.EC2_SSH_KEY }}
-        script: |
-          # Ensure the project directory exists
-          mkdir -p ~/AI-medical-chatbot/
-          cd ~/AI-medical-chatbot/
-          # Check if the repo already exists
-          if [ -d ".git" ]; then
-            # Repo exists, just pull changes
-            git pull origin main
-          else
-            # Clone the repo
-            git clone git@github.com:Bubo101/AI-medical-chatbot.git .
-          fi
-          # Navigate to the chatbot_server directory within the cloned repo
-          cd ~/AI-medical-chatbot/chatbot_server
-
-          # Perform npm install
-          npm install
-          
-          # Use PM2 to restart the app, or start it if it's not already running
-          pm2 restart chatbot_server || pm2 start server.js --name "chatbot_server" --cwd ~/AI-medical-chatbot/chatbot_server
+- name: Deploy to EC2
+  uses: appleboy/ssh-action@master
+  with:
+    host: ${{ secrets.EC2_HOST }}
+    username: ${{ secrets.EC2_USER }}
+    key: ${{ secrets.EC2_SSH_KEY }}
+    script: |
+      # Ensure the project directory exists
+      mkdir -p ~/AI-medical-chatbot/
+      cd ~/AI-medical-chatbot/
+      # Check if the repo already exists
+      if [ -d ".git" ]; then
+        # Repo exists, just pull changes
+        git pull origin main
+      else
+        # Clone the repo
+        git clone git@github.com:Bubo101/AI-medical-chatbot.git .
+      fi
+      # Navigate to the chatbot_server directory within the cloned repo
+      cd chatbot_server
+      # Perform npm install
+      npm install
+      # Use PM2 to restart the app, or start it if it's not already running
+      pm2 restart chatbot_server || pm2 start server.js --name "chatbot_server" --cwd ~/AI-medical-chatbot/chatbot_server
