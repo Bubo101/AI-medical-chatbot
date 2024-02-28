@@ -20,17 +20,20 @@ jobs:
         username: ${{ secrets.EC2_USER }}
         key: ${{ secrets.EC2_SSH_KEY }}
         script: |
-          # Ensure the working directory exists within the home directory
-          mkdir -p ~/chatbot_server/
-          cd ~/
-          # Pull if the repo already exists, clone if it does not
-          if [ -d "~/chatbot_server/.git" ]; then
-            cd chatbot_server && git pull origin main && cd ..
+          # Ensure the project directory exists
+          mkdir -p ~/AI-medical-chatbot/
+          cd ~/AI-medical-chatbot/
+          # Check if the repo already exists
+          if [ -d ".git" ]; then
+            # Repo exists, just pull changes
+            git pull origin main
           else
-            git clone git@github.com:Bubo101/AI-medical-chatbot.git chatbot_server/
-            cd chatbot_server
+            # Clone the repo
+            git clone git@github.com:Bubo101/AI-medical-chatbot.git .
           fi
+          # Navigate to the chatbot_server directory within the cloned repo
+          cd chatbot_server
           # Perform npm install
           npm install
-          # Restart the app with PM2, or start it if it's not running
+          # Use PM2 to restart the app, or start it if it's not already running
           pm2 restart chatbot_server || pm2 start server.js --name "chatbot_server"
