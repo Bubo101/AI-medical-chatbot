@@ -1,0 +1,35 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Adjust this as needed, if you deploy from a different branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Specify the Node.js version you are using
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm install
+        working-directory: ./chatbot_ui  # Navigate to your React app directory
+
+      - name: Build React App
+        run: npm run build
+        working-directory: ./chatbot_ui  # Navigate to your React app directory
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages  # The branch the action should deploy to.
+          folder: chatbot_ui/build  # The folder the action should deploy.
+          # Ensure your project builds into the 'build' directory within 'chatbot_ui'.
