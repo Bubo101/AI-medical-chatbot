@@ -1,58 +1,61 @@
 /* DisclaimerPopup.css */
 .disclaimer-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000; 
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; 
+  overflow-y: auto; /* Allow scrolling on the overlay if needed */
+}
 
-  .disclaimer-content {
-    background-image: linear-gradient(to right, #42A6EF, #2F80ED);
-    color: white; 
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 600px;
-    text-align: center;
-  }
-  
-  .disclaimer-content h2 {
-    margin-top: 0;
-    font-size: 2.5em;
-    margin-bottom: -5px;
-  }
-  
-  .disclaimer-content ul {
-    text-align: left;
-    font-size: 1.3em;
-  }
+.disclaimer-content {
+  background-image: linear-gradient(to right, #42A6EF, #2F80ED);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 95%; /* Slightly reduce max width for better mobile view */
+  max-height: 90vh; /* Maximum height to ensure it's not taller than the viewport */
+  overflow-y: auto; /* Allow scrolling within the content if it exceeds the max height */
+  text-align: center;
+  box-sizing: border-box; /* Ensure padding doesn't affect overall width */
+}
 
-  .disclaimer-content li {
-    margin-bottom: 10px;
-  }
-  
-  .disclaimer-content button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 1.2em;
-  }
-  
-  .sample-prompts p {
-    background-color: white; /* White background for the bubble */
-    color: #333; /* Dark text for readability */
-    padding: 10px 20px; /* Padding inside the bubble */
-    margin: 10px 0; /* Margin between bubbles */
-    border-radius: 15px; /* Rounded corners for the bubble */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: Soft shadow for depth */
-    display: block; /* Ensure it's displayed as a block element */
-    max-width: calc(100% - 80px); /* Adjust width considering padding */
-    text-align: center; /* Center text inside the bubble */
-    margin-left: auto; /* Center the bubble horizontally */
-    margin-right: auto; /* Center the bubble horizontally */
+.disclaimer-content h2 {
+  margin-top: 0;
+  font-size: 2em; /* Slightly reduce for mobile */
+}
+
+.disclaimer-content ul {
+  text-align: left;
+  font-size: 1.2em; /* Adjust font size for readability on mobile */
+}
+
+.disclaimer-content li {
+  margin-bottom: 10px;
+}
+
+.disclaimer-content button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1.2em; /* Ensure button is large enough to be easily clickable on mobile */
+}
+
+.sample-prompts p {
+  background-color: white;
+  color: #333;
+  padding: 10px 20px;
+  margin: 10px 0;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: block;
+  max-width: calc(100% - 40px); /* Adjust max width for mobile */
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
