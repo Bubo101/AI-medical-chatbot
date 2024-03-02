@@ -28,6 +28,7 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
+          token: ${{ secrets.DEPLOY_TOKEN }}
           branch: gh-pages  # This is the branch the built site will be pushed to
           folder: chatbot_ui/build  # The folder the action should deploy, this should be the build output directory
 
