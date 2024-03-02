@@ -1,32 +1,30 @@
-name: Deploy React Application to GitHub Pages
+name: Deploy React App to GitHub Pages
 
 on:
   push:
     branches:
-      - main  # Or any other branch you want to deploy from
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout Repository
         uses: actions/checkout@v4.1.1
 
-      - name: Use Node.js
-        uses: actions/setup-node@v4.0.2
-        with:
-          node-version: '18.12.1' # Or the version you use, ensure it matches your development environment
+      - name: Install Dependencies
+        run: cd chatbot_ui && npm install
 
-      - name: Install dependencies
-        run: npm install
-        working-directory: ./chatbot_ui
-
-      - name: Build
-        run: npm run build
-        working-directory: ./chatbot_ui
+      - name: Build React App
+        run: cd chatbot_ui && npm run build
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
-          branch: gh-pages  # This is the branch the built site will be pushed to
-          folder: chatbot_ui/build  # The folder the action should deploy, this should be the build output directory
+          branch: gh-pages # The branch the action should deploy to.
+          folder: chatbot_ui/build # The folder the action should deploy.
+
+
+#actions/checkout@v4.1.1
+#actions/setup-node@v4.0.2
+#JamesIves/github-pages-deploy-action@4.1.4
