@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/AI-medical-chatbot/static/css/main.e1af065c.css",
-    "main.js": "/AI-medical-chatbot/static/js/main.fd35fd1c.js",
-    "index.html": "/AI-medical-chatbot/index.html",
-    "main.e1af065c.css.map": "/AI-medical-chatbot/static/css/main.e1af065c.css.map",
-    "main.fd35fd1c.js.map": "/AI-medical-chatbot/static/js/main.fd35fd1c.js.map"
+    "main.css": "/static/css/main.e1af065c.css",
+    "main.js": "/static/js/main.fd35fd1c.js",
+    "index.html": "/index.html",
+    "main.e1af065c.css.map": "/static/css/main.e1af065c.css.map",
+    "main.fd35fd1c.js.map": "/static/js/main.fd35fd1c.js.map"
   },
   "entrypoints": [
     "static/css/main.e1af065c.css",
