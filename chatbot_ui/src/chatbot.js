@@ -42,11 +42,11 @@ function Chatbot() {
         }
     }, [isLoading, messages.length]);
 
-    useEffect(() => {
-        if (acceptedDisclaimer && inputRef.current) {
-            inputRef.current.focus();
-        }
-    }, [acceptedDisclaimer]);
+    // useEffect(() => {
+    //     if (acceptedDisclaimer && inputRef.current) {
+    //         inputRef.current.focus();
+    //     }
+    // }, [acceptedDisclaimer]);
 
     const handleAcceptDisclaimer = () => {
         setAcceptedDisclaimer(true);

@@ -7,7 +7,7 @@ const DisclaimerPopup = ({ onAccept }) => {
     <div className="disclaimer-overlay">
       <div className="disclaimer-content">
         <h2>Disclaimer</h2>
-        <p>Welcome to the Enloe Urology Services Chatbot. Please note:</p>
+        <p>Welcome to the Enloe Urology Services Chatbot. Clicking "Accept" below is required to continue. Please note:</p>
         <ul>
           <li>This chatbot provides general urology information. It is not a substitute for professional medical advice.</li>
           <li>Interactions with this chatbot do not create a doctor-patient relationship.</li>

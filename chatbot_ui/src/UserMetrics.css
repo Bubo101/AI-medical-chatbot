@@ -1,0 +1,47 @@
+.user-metrics-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* This will center the h1 horizontally */
+    padding: 40px;
+    margin: 20px;
+    border-radius: 10px;
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    border: 1px solid #d1d1d1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #333;
+  }
+  
+  .user-metrics-header {
+    text-align: center;
+    width: 100%; /* Make h1 full width of the container */
+    margin-bottom: 20px; /* Add some space between the h1 and the grid */
+  }
+  
+  .metrics-grid {
+    display: grid;
+    width: 100%; /* Full width of the container */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .metric-item {
+    background: #f9f9f9;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+  }
+  
+  .metric-value {
+    color: #007bff;
+    font-weight: bold;
+    display: block;
+    margin-top: 5px;
+  }
+  
+  @media (max-width: 600px) {
+    .metrics-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
