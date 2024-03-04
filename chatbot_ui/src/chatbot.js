@@ -82,43 +82,86 @@ function Chatbot() {
     };
     
 
-    return (
-        <div className="chat-container">
-            {!acceptedDisclaimer ? (
-                <DisclaimerPopup onAccept={handleAcceptDisclaimer} />
-            ) : (
-                <>
-                    <div className="messages-container" ref={messagesContainerRef}>
-                        {messages.map((msg, index) => (
-                            <div key={index} className={`message ${msg.role}`}>
-                                {msg.role === 'loading' ? (
-                                    <div className="loading-dots">
-                                        <span className="loading-dot"></span>
-                                        <span className="loading-dot"></span>
-                                        <span className="loading-dot"></span>
-                                    </div>
-                                ) : (
-                                    <FormatMessage content={msg.content} />
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                    <form className="input-container" onSubmit={sendMessage}>
-                        <input
-                            ref={inputRef}
-                            type="text"
-                            value={userInput}
-                            onChange={(e) => setUserInput(e.target.value)}
-                            placeholder="Type a message..."
-                            disabled={isLoading}
-                        />
-                        <button type="submit" disabled={isLoading}>Send</button>
-                    </form>
-                    <Feedback />
-                </>
-            )}
-        </div>
-    );
-}
+//     return (
+//         <div className="chat-container">
+//             {!acceptedDisclaimer ? (
+//                 <DisclaimerPopup onAccept={handleAcceptDisclaimer} />
+//             ) : (
+//                 <>
+//                     <div className="messages-container" ref={messagesContainerRef}>
+//                         {messages.map((msg, index) => (
+//                             <div key={index} className={`message ${msg.role}`}>
+//                                 {msg.role === 'loading' ? (
+//                                     <div className="loading-dots">
+//                                         <span className="loading-dot"></span>
+//                                         <span className="loading-dot"></span>
+//                                         <span className="loading-dot"></span>
+//                                     </div>
+//                                 ) : (
+//                                     <FormatMessage content={msg.content} />
+//                                 )}
+//                             </div>
+//                         ))}
+//                     </div>
+//                     <form className="input-container" onSubmit={sendMessage}>
+//                         <input
+//                             ref={inputRef}
+//                             type="text"
+//                             value={userInput}
+//                             onChange={(e) => setUserInput(e.target.value)}
+//                             placeholder="Type a message..."
+//                             disabled={isLoading}
+//                         />
+//                         <button type="submit" disabled={isLoading}>Send</button>
+//                     </form>
+//                     <Feedback />
+//                 </>
+//             )}
+//         </div>
+//     );
+// }
+
+return (
+    <div className="chat-container">
+      {!acceptedDisclaimer ? (
+        <DisclaimerPopup onAccept={handleAcceptDisclaimer} />
+      ) : (
+        <>
+          <div className="messages-container" ref={messagesContainerRef} aria-live="polite">
+            {messages.map((msg, index) => (
+              <div key={msg.id || index} className={`message ${msg.role}`}>
+                {msg.role === 'loading' ? (
+                  <div className="loading-dots" aria-label="Loading messages">
+                    <span className="loading-dot"></span>
+                    <span className="loading-dot"></span>
+                    <span className="loading-dot"></span>
+                  </div>
+                ) : (
+                  <FormatMessage content={msg.content} />
+                )}
+              </div>
+            ))}
+          </div>
+          <form className="input-container" onSubmit={sendMessage}>
+            <label htmlFor="userInput" className="visually-hidden">Type a message:</label>
+            <input
+              id="userInput"
+              ref={inputRef}
+              type="text"
+              value={userInput}
+              onChange={(e) => setUserInput(e.target.value)}
+              placeholder="Type a message..."
+              disabled={isLoading}
+              aria-describedby="inputHelp"
+            />
+            <span id="inputHelp" className="visually-hidden">Enter your message and press enter to send</span>
+            <button type="submit" disabled={isLoading}>Send</button>
+          </form>
+          <Feedback />
+        </>
+      )}
+    </div>
+  );
+}  
 
 export default Chatbot;

@@ -11,10 +11,10 @@ body {
 .chat-container {
     display: flex;
     flex-direction: column;
-    height: 90vh;
+    height: 80vh;
     max-width: 600px;
     margin: auto;
-    margin-top: 30px;
+    margin-top: -60px;
     border: 1px solid #bbb;
     border-radius: 8px;
     box-shadow: 5px 5px 15px #1b1a1a;
@@ -115,3 +115,14 @@ body {
     50%, 100% { background-color: transparent; }
 }
 
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+  
