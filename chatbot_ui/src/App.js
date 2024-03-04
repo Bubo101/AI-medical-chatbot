@@ -5,7 +5,7 @@ import UserMetrics from './UserMetrics';
 
 function App() {
   return (
-    <Router basename="/AI-medical-chatbot">
+    <Router>
       <div className="App">
         <Routes>
           <Route path="/" element={<Chatbot />} exact />
