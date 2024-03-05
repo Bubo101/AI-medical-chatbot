@@ -46,7 +46,7 @@ const botContext = [
   },
   {
     role: "system",
-    content: "ONLY respond to questions related to urology, nothing else. If the user asks a random question, redirect back to urology"
+    content: "Do not answer questions outside of the scope of urology. Do not provide medical advice or diagnosis outside of urology. Do not provide emergency services. Do not provide information about other medical specialties or services."
   },
 ]
 
