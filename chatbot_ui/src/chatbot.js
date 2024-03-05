@@ -80,46 +80,6 @@ function Chatbot() {
             setUserInput(''); 
         }
     };
-    
-
-//     return (
-//         <div className="chat-container">
-//             {!acceptedDisclaimer ? (
-//                 <DisclaimerPopup onAccept={handleAcceptDisclaimer} />
-//             ) : (
-//                 <>
-//                     <div className="messages-container" ref={messagesContainerRef}>
-//                         {messages.map((msg, index) => (
-//                             <div key={index} className={`message ${msg.role}`}>
-//                                 {msg.role === 'loading' ? (
-//                                     <div className="loading-dots">
-//                                         <span className="loading-dot"></span>
-//                                         <span className="loading-dot"></span>
-//                                         <span className="loading-dot"></span>
-//                                     </div>
-//                                 ) : (
-//                                     <FormatMessage content={msg.content} />
-//                                 )}
-//                             </div>
-//                         ))}
-//                     </div>
-//                     <form className="input-container" onSubmit={sendMessage}>
-//                         <input
-//                             ref={inputRef}
-//                             type="text"
-//                             value={userInput}
-//                             onChange={(e) => setUserInput(e.target.value)}
-//                             placeholder="Type a message..."
-//                             disabled={isLoading}
-//                         />
-//                         <button type="submit" disabled={isLoading}>Send</button>
-//                     </form>
-//                     <Feedback />
-//                 </>
-//             )}
-//         </div>
-//     );
-// }
 
 return (
     <div className="chat-container">
