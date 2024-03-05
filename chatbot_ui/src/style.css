@@ -20,6 +20,7 @@ body {
     box-shadow: 5px 5px 15px #1b1a1a;
     overflow: hidden;
     background-color: white;
+    margin-bottom: -80px;
 }
 
 .messages-container {
