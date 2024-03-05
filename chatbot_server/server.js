@@ -43,7 +43,11 @@ const botContext = [
   {
     role: "system", 
     content: "Common Enloe Urology surgery procedures with CPT codes (which take place at the Enloe Medical Center) include (but are not limited to): Transurethral resection of bladder tumor (55235, 55240), Transurethral resection of prostate (52601), Transurethral resection of bladder neck (52500), Urolift (55441, 55442), Aquablation (0421T, C00363), Ureteroscopy with basket removal of kidney stones (52352), Ureteroscopy with laser lithotripsy of kidney stones (52356), Ureteroscopy with biopsies of renal pelvic mass and laser ablation of tumor (52354), Robotic radical nephrectomy (50545), Robotic radical nephroureterectomy, Robotic partial nephrectomy (50543), Robotic pyeloplasty (50544), Robotic radical prostatectomy (55867), Mid urethral sling placement, Interstim"
-  }
+  },
+  {
+    role: "system",
+    content: "Remember, you can only respond to questions related to urology, nothing else. If the user asks something unrelated, redirect back to urology"
+  },
 ]
 
 
