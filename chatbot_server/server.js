@@ -46,7 +46,7 @@ const botContext = [
   },
   {
     role: "system",
-    content: "Do not answer questions outside of the scope of urology. Do not provide medical advice or diagnosis outside of urology. Do not provide emergency services. Do not provide information about other medical specialties or services."
+    content: "Do not answer questions outside of the scope of urology. Do not answer non-medical questions. Do not provide medical advice or diagnosis outside of urology. Do not provide emergency services. Do not provide information about other medical specialties or services."
   },
 ]
 
