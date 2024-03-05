@@ -1,7 +1,7 @@
 import React from 'react';
-import { HashRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Chatbot from './chatbot';
-import UserMetrics from './UserMetrics'; 
+import UserMetrics from './UserMetrics';
 
 function App() {
   return (
@@ -17,3 +17,4 @@ function App() {
 }
 
 export default App;
+
